@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario LCL</title>
+  <style>
+    /* Diseño existente */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 25px 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      background-color: #007bff;
+      color: #ffffff;
+      padding: 20px;
+      border-radius: 12px 12px 0 0;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333333;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: #f8f9fa;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #007bff;
+      background-color: #ffffff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    }
+
+    .form-group input[type="checkbox"] {
+      width: auto;
+      margin-right: 10px;
+    }
+
+    .form-group textarea {
+      resize: none;
+    }
+
+    .inline-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: nowrap;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .button {
+      flex: 1;
+      padding: 12px;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-green {
+      background-color: #28a745;
+    }
+
+    .button-green:hover {
+      background-color: #218838;
+    }
+
+    .button-red {
+      background-color: #dc3545;
+    }
+
+    .button-red:hover {
+      background-color: #c82333;
+    }
+
+    .button-blue {
+      background-color: #007bff;
+    }
+
+    .button-blue:hover {
+      background-color: #0056b3;
+    }
+
+    .button-orange {
+      background-color: #fd7e14;
+    }
+
+    .button-orange:hover {
+      background-color: #e36400;
+    }
+
+    .output {
+      margin-top: 30px;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      color: #333333;
+      font-size: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .output-section h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #003366;
+      margin-bottom: 15px;
+    }
+
+    .output-section h4 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+    }
+
+    .output-section p {
+      margin: 5px 0;
+    }
+
+    .checkbox-indicator {
+      font-weight: bold;
+    }
+
+    .checkbox-indicator.red {
+      color: #dc3545;
+    }
+
+    .checkbox-indicator.green {
+      color: #28a745;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #555555;
+    }
+
+    .notification {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #28a745;
+      color: #ffffff;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .notification.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      Formulario LCL
+    </div>
+    <form id="formularioSolicitud">
+      <h4>Datos LCL</h4>
+      <div class="form-group">
+        <label for="cuatro">CUATRO: Nº Expediente</label>
+        <input type="text" id="cuatro" name="cuatro" placeholder="Introduce el número de expediente">
+      </div>
+      <div class="form-group">
+        <label for="obra">OBRA:</label>
+        <input type="text" id="obra" name="obra" placeholder="Introduce el nombre de la obra">
+      </div>
+      <div class="form-group">
+        <label for="urlServidor">URL Servidor:</label>
+        <input type="text" id="urlServidor" name="urlServidor" placeholder="Introduce la URL del servidor">
+      </div>
+      <div class="form-group">
+        <label for="tipologiaLCL">Tipología LCL:</label>
+        <select id="tipologiaLCL" name="tipologiaLCL">
+          <option value="" disabled selected>Seleccione una opción</option>
+          <option value="IM3">IM3</option>
+          <option value="IM3 - TERCEROS">IM3 - TERCEROS</option>
+          <option value="ENDESA">ENDESA</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="numeroLCL">Número LCL:</label>
+        <input type="text" id="numeroLCL" name="numeroLCL" placeholder="Introduce el número LCL">
+      </div>
+      <div class="form-group">
+        <input type="checkbox" id="colgadaEDigital" name="colgadaEDigital">
+        <label for="colgadaEDigital">¿Está colgada en e-digital?</label>
+      </div>
+      <div class="form-group">
+        <label for="nombreLCL">Nombre LCL:</label>
+        <input type="text" id="nombreLCL" name="nombreLCL" placeholder="Introduce el nombre LCL">
+      </div>
+      <div class="form-group inline-group">
+        <input type="text" id="iter" name="iter" placeholder="ITER">
+        <input type="text" id="ads" name="ads" placeholder="ADS">
+        <input type="text" id="agp" name="agp" placeholder="AGP">
+      </div>
+      <div class="form-group">
+        <input type="checkbox" id="adsAgpEDigital" name="adsAgpEDigital">
+        <label for="adsAgpEDigital">¿ADS y AGP anotados en e-digital?</label>
+      </div>
+      <div class="form-group">
+        <label for="odsUtilizadas">ODS utilizadas:</label>
+        <textarea id="odsUtilizadas" name="odsUtilizadas" rows="2"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="odsNoUtilizadas">ODS no utilizadas:</label>
+        <textarea id="odsNoUtilizadas" name="odsNoUtilizadas" rows="2"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="fechaCreacionLCL">Fecha creación LCL:</label>
+        <input type="date" id="fechaCreacionLCL" name="fechaCreacionLCL">
+      </div>
+      <div class="form-group">
+        <label for="creadoPor">Creado por:</label>
+        <input type="text" id="creadoPor" name="creadoPor">
+      </div>
+
+      <div>
+        <h4>Datos Obra Ejecutable</h4>
+      </div>
+      <div class="form-group">
+        <label for="subtipus">Subtipus Sol·licitud:</label>
+        <select id="subtipus" name="subtipus">
+          <option value="" disabled selected>Seleccione una opción</option>
+          <option value="Nou subministrament">Nou subministrament</option>
+          <option value="Subministrament complementari">Subministrament complementari</option>
+          <option value="Ampliació de potència">Ampliació de potència</option>
+          <option value="Variant">Variant</option>
+          <option value="Canvi de tensió">Canvi de tensió</option>
+          <option value="Provisional d'obres">Provisional d'obres</option>
+          <option value="PRE">PRE</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tractamentEconomic">Tractament Econòmic:</label>
+        <select id="tractamentEconomic" name="tractamentEconomic">
+          <option value="" disabled selected>Seleccione una opción</option>
+          <option value="Pressupost">Pressupost</option>
+          <option value="Barem">Barem</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="modalitatExecucio">Modalitat Execució:</label>
+        <select id="modalitatExecucio" name="modalitatExecucio">
+          <option value="" disabled selected>Seleccione una opción</option>
+          <option value="TOT CLIENT">TOT CLIENT</option>
+          <option value="TOT ENDESA">TOT ENDESA</option>
+          <option value="TREBALLS ADEQUACIÓ D'UN EXP. TOT CLIENT">TREBALLS ADEQUACIÓ D'UN EXP. TOT CLIENT</option>
+          <option value="TOT CLIENT + ADEQUACIÓ">TOT CLIENT + ADEQUACIÓ</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="provincia">Provincia:</label>
+        <input type="text" id="provincia" name="provincia">
+      </div>
+      <div class="form-group">
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion">
+      </div>
+      <div class="form-group">
+        <label for="gestorObra">Gestor Obra:</label>
+        <select id="gestorObra" name="gestorObra">
+          <option value="" disabled selected>Seleccione una opción</option>
+          <option value="Jordi Clapés">Jordi Clapés</option>
+          <option value="Joan Hernandez">Joan Hernandez</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tecnicoObra">Técnico Obra:</label>
+        <select id="tecnicoObra" name="tecnicoObra">
+          <option value="" disabled selected>Seleccione una opción</option>
+          <option value="Joan Coll">Joan Coll</option>
+          <option value="Maria Mesa">Maria Mesa</option>
+          <option value="Joan Hernandez">Joan Hernandez</option>
+          <option value="Jordi Clapés">Jordi Clapés</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tecnicoEDE">Técnico EDE:</label>
+        <input type="text" id="tecnicoEDE" name="tecnicoEDE">
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="button button-green" id="generarSolicitud">Generar Solicitud</button>
+        <button type="button" class="button button-red" id="limpiarFormulario">Limpiar Formulario</button>
+      </div>
+    </form>
+
+    <div class="output" id="outputSolicitud" style="display: none;">
+      <div class="output-section" id="outputDatosLCL"></div>
+      <div class="output-section" id="outputDatosObra"></div>
+      <div class="button-group">
+        <button class="button button-blue" id="copiarPortapapeles">Copiar al Portapapeles</button>
+        <button class="button button-orange" id="guardarSolicitud">Guardar Solicitud</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <h4>Buscar Solicitud</h4>
+      <form id="buscarFormulario">
+        <div class="form-group">
+          <label for="buscarNumeroLCL">Número LCL:</label>
+          <input type="text" id="buscarNumeroLCL">
+        </div>
+        <div class="form-group">
+          <label for="buscarNumeroExpediente">Número Expediente:</label>
+          <input type="text" id="buscarNumeroExpediente">
+        </div>
+        <div class="form-group">
+          <label for="buscarFechaCreacion">Fecha Creación:</label>
+          <input type="date" id="buscarFechaCreacion">
+        </div>
+        <button type="button" class="button button-blue" id="buscarSolicitud">Buscar</button>
+      </form>
+      <div id="resultadoBusqueda" class="output" style="display: none;"></div>
+    </div>
+
+    <div class="container">
+      <h4>Base de Datos Completa</h4>
+      <button type="button" class="button button-green" id="verBBDD">Ver toda la BBDD</button>
+      <div id="bbddCompleta" class="output" style="display: none;"></div>
+    </div>
+
+    <div class="notification" id="notification">
+      Solicitud LCL guardada correctamente
+    </div>
+
+    <div class="footer">
+      © 2025 Valentina Deumal. Propiedad de IM3 Ingenieros.
+    </div>
+  </div>
+
+  <script>
+    const generarSolicitudBtn = document.getElementById("generarSolicitud");
+    const limpiarFormularioBtn = document.getElementById("limpiarFormulario");
+    const guardarSolicitudBtn = document.getElementById("guardarSolicitud");
+    const copiarPortapapelesBtn = document.getElementById("copiarPortapapeles");
+    const buscarSolicitudBtn = document.getElementById("buscarSolicitud");
+    const verBBDDBtn = document.getElementById("verBBDD");
+    const resultadoBusqueda = document.getElementById("resultadoBusqueda");
+    const bbddCompleta = document.getElementById("bbddCompleta");
+    const notification = document.getElementById("notification");
+
+    generarSolicitudBtn.addEventListener("click", () => {
+      const outputDatosLCL = document.getElementById("outputDatosLCL");
+      const outputDatosObra = document.getElementById("outputDatosObra");
+
+      const checkboxIndicator = (id) => {
+        const isChecked = document.getElementById(id).checked;
+        return `<span class="checkbox-indicator ${isChecked ? 'green' : 'red'}">${isChecked ? '✔' : '✘'}</span>`;
+      };
+
+      const addIfNotEmpty = (label, value) => {
+        return value ? `<p><strong>${label}:</strong> ${value}</p>` : '';
+      };
+
+      outputDatosLCL.innerHTML = `
+        <h3>Solicitud LCL GENERADA</h3>
+        ${addIfNotEmpty('CUATRO', document.getElementById('cuatro').value)}
+        ${addIfNotEmpty('OBRA', document.getElementById('obra').value)}
+        ${addIfNotEmpty('URL Servidor', document.getElementById('urlServidor').value)}
+        ${addIfNotEmpty('Tipología LCL', document.getElementById('tipologiaLCL').value)}
+        ${addIfNotEmpty('Número LCL', document.getElementById('numeroLCL').value)}
+        <p><strong>Colgada en e-digital:</strong> ${checkboxIndicator("colgadaEDigital")}</p>
+        ${addIfNotEmpty('Nombre LCL', document.getElementById('nombreLCL').value)}
+        <p><strong>ITER:</strong> ${document.getElementById("iter").value || 'N/A'} |
+           <strong>ADS:</strong> ${document.getElementById("ads").value || 'N/A'} |
+           <strong>AGP:</strong> ${document.getElementById("agp").value || 'N/A'} |
+           <strong>ADS y AGP anotados en e-digital:</strong> ${checkboxIndicator("adsAgpEDigital")}</p>
+        ${addIfNotEmpty('ODS utilizadas', document.getElementById('odsUtilizadas').value)}
+        ${addIfNotEmpty('ODS no utilizadas', document.getElementById('odsNoUtilizadas').value)}
+        ${addIfNotEmpty('Fecha creación LCL', document.getElementById('fechaCreacionLCL').value)}
+        ${addIfNotEmpty('Creado por', document.getElementById('creadoPor').value)}
+      `;
+
+      outputDatosObra.innerHTML = `
+        <h4>Datos Obra Ejecutable</h4>
+        ${addIfNotEmpty('Subtipus Sol·licitud', document.getElementById('subtipus').value)}
+        ${addIfNotEmpty('Tractament Econòmic', document.getElementById('tractamentEconomic').value)}
+        ${addIfNotEmpty('Modalitat Execució', document.getElementById('modalitatExecucio').value)}
+        ${addIfNotEmpty('Provincia', document.getElementById('provincia').value)}
+        ${addIfNotEmpty('Dirección', document.getElementById('direccion').value)}
+        ${addIfNotEmpty('Gestor Obra', document.getElementById('gestorObra').value)}
+        ${addIfNotEmpty('Técnico Obra', document.getElementById('tecnicoObra').value)}
+        ${addIfNotEmpty('Técnico EDE', document.getElementById('tecnicoEDE').value)}
+      `;
+
+      outputSolicitud.style.display = "block";
+    });
+
+    limpiarFormularioBtn.addEventListener("click", () => {
+      document.getElementById("formularioSolicitud").reset();
+      outputSolicitud.style.display = "none";
+    });
+
+    guardarSolicitudBtn.addEventListener("click", () => {
+      const numeroLCL = document.getElementById("numeroLCL").value.trim();
+      const numeroExpediente = document.getElementById("cuatro").value.trim();
+      const fechaCreacion = document.getElementById("fechaCreacionLCL").value.trim();
+      const mesCreacion = fechaCreacion.slice(0, 7);
+
+      if (!numeroLCL || !numeroExpediente || !fechaCreacion) {
+        alert("Por favor, complete Número LCL, Número Expediente y Fecha de Creación.");
+        return;
+      }
+
+      const solicitud = {
+        numeroLCL,
+        numeroExpediente,
+        fechaCreacion,
+        datos: {
+          ...Object.fromEntries(new FormData(document.getElementById("formularioSolicitud")))
+        }
+      };
+
+      const solicitudesPorMes = JSON.parse(localStorage.getItem(mesCreacion)) || [];
+      solicitudesPorMes.push(solicitud);
+      localStorage.setItem(mesCreacion, JSON.stringify(solicitudesPorMes));
+
+      notification.classList.add("active");
+      setTimeout(() => notification.classList.remove("active"), 3000);
+    });
+
+    copiarPortapapelesBtn.addEventListener("click", () => {
+      const range = document.createRange();
+      range.selectNode(outputSolicitud);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      try {
+        document.execCommand("copy");
+        alert("Solicitud copiada al portapapeles.");
+      } catch (err) {
+        alert("Error al copiar al portapapeles.");
+      }
+
+      selection.removeAllRanges();
+    });
+
+    buscarSolicitudBtn.addEventListener("click", () => {
+      const numeroLCL = document.getElementById("buscarNumeroLCL").value.trim();
+      const numeroExpediente = document.getElementById("buscarNumeroExpediente").value.trim();
+      const fechaCreacion = document.getElementById("buscarFechaCreacion").value.trim();
+      resultadoBusqueda.style.display = "none";
+      resultadoBusqueda.innerHTML = "";
+
+      const solicitudes = Object.values(localStorage).flatMap((mes) =>
+        JSON.parse(mes)
+      );
+      const resultados = solicitudes.filter((solicitud) => {
+        return (
+          (numeroLCL && solicitud.numeroLCL === numeroLCL) ||
+          (numeroExpediente && solicitud.numeroExpediente === numeroExpediente) ||
+          (fechaCreacion && solicitud.fechaCreacion === fechaCreacion)
+        );
+      });
+
+      if (resultados.length > 0) {
+        resultados.forEach((solicitud) => {
+          resultadoBusqueda.innerHTML += `
+            <p><strong>Número LCL:</strong> ${solicitud.numeroLCL}</p>
+            <p><strong>Número Expediente:</strong> ${solicitud.numeroExpediente}</p>
+            <p><strong>Fecha Creación:</strong> ${solicitud.fechaCreacion}</p>
+            <hr>
+          `;
+        });
+        resultadoBusqueda.style.display = "block";
+      } else {
+        alert("No se encontraron solicitudes.");
+      }
+    });
+
+    verBBDDBtn.addEventListener("click", () => {
+      bbddCompleta.style.display = "none";
+      bbddCompleta.innerHTML = "";
+
+      const solicitudes = Object.entries(localStorage).map(([mes, datos]) => ({
+        mes,
+        solicitudes: JSON.parse(datos),
+      }));
+
+      if (solicitudes.length > 0) {
+        solicitudes.forEach(({ mes, solicitudes }) => {
+          bbddCompleta.innerHTML += `<h4>Mes: ${mes}</h4>`;
+          solicitudes.forEach((solicitud) => {
+            bbddCompleta.innerHTML += `
+              <p><strong>Número LCL:</strong> ${solicitud.numeroLCL}</p>
+              <p><strong>Número Expediente:</strong> ${solicitud.numeroExpediente}</p>
+              <p><strong>Fecha Creación:</strong> ${solicitud.fechaCreacion}</p>
+              <hr>
+            `;
+          });
+        });
+        bbddCompleta.style.display = "block";
+      } else {
+        alert("No hay datos en la base de datos.");
+      }
+    });
+  </script>
+</body>
+</html>
